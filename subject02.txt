@@ -1,0 +1,77 @@
+Assignment name  : cpp_module_02
+Expected files   : Warlock.cpp Warlock.hpp
+                   ASpell.hpp ASpell.cpp
+				   ATarget.hpp ATarget.cpp
+				   Fwoosh.hpp Fwoosh.cpp
+				   Dummy.hpp Dummy.cpp
+				   Fireball.hpp Fireball.cpp
+				   Polymorph.hpp Polymorph.cpp
+				   BrickWall.hpp BrickWall.cpp
+				   SpellBook.hpp SpellBook.cpp
+				   TargetGenerator.hpp TargetGenerator.cpp
+--------------------------------------------------------------------------------
+
+Warlock, SpellBook ve TargetGenerator sınıflarında switch ifadesi YASAKTIR ve kullanılması -42 ile sonuçlanır.
+
+Fwoosh modeline uygun olarak aşağıdaki iki büyüyü oluşturun:
+
+Fireball (Adı: "Fireball", Etkileri: "burnt to a crisp")
+Polymorph (Adı: "Polymorph", Etkileri: "turned into a critter")
+
+Bunun yanı sıra, Warlock'un saldırmak için sadece dummy'ye sahip olmaması için, yeni bir hedef oluşturalım, 
+bu BrickWall (Türü: "Inconspicuous Red-brick Wall") olacaktır.
+
+Şimdi, kopyalanamayan veya kopya ile oluşturulamayan kanonik formda bir SpellBook sınıfı yapın. 
+Aşağıdaki işlevlere sahip olacaktır:
+
+void learnSpell(ASpell*), bir büyüyü kitapta KOPYALAR
+void forgetSpell(string const &), kitapta olmayan bir büyü hariç, bir büyüyü kitaptan siler
+ASpell* createSpell(string const &), bir büyünün adına karşılık gelen bir string alır, onu oluşturur ve geri döndürür.
+Warlock'u şimdi değiştirelim, onunla birlikte yaratılacak ve onunla birlikte yok edilecek bir büyü kitabı sağlayın. 
+Ayrıca learnSpell ve forgetSpell işlevlerinin, büyü kitabınınkileri çağırmasını sağlayın.
+
+launchSpell işlevi, başlatmaya çalıştığı büyüyü oluşturmak için SpellBook'u kullanmak zorunda kalacaktır.
+
+TargetGenerator sınıfını kanonik formda ve önceki gibi kopyalanamaz yapın.
+
+Aşağıdaki işlevlere sahip olacaktır:
+
+void learnTargetType(ATarget*), jeneratöre bir hedef öğretir
+
+void forgetTargetType(string const &), hedef tipi biliniyorsa, jeneratörün bir hedef türünü unutmasını sağlar
+
+ATarget* createTarget(string const &), belirtilen türde bir hedef oluşturur
+
+Neyse ki, bu tamamlandı. Şimdi burada bir test ana işlevi var.
+Çok kapsamlı değil, bu yüzden kendi testlerinizi de kullandığınızdan emin olun.
+
+int main()
+{
+  Warlock richard("Richard", "foo");
+  richard.setTitle("Hello, I'm Richard the Warlock!");
+  BrickWall model1;
+
+  Polymorph* polymorph = new Polymorph();
+  TargetGenerator tarGen;
+
+  tarGen.learnTargetType(&model1);
+  richard.learnSpell(polymorph);
+
+  Fireball* fireball = new Fireball();
+
+  richard.learnSpell(fireball);
+
+  ATarget* wall = tarGen.createTarget("Inconspicuous Red-brick Wall");
+
+  richard.introduce();
+  richard.launchSpell("Polymorph", *wall);
+  richard.launchSpell("Fireball", *wall);
+}
+
+~$ ./a.out | cat -e
+Richard: This looks like another boring day.$
+Richard: I am Richard, Hello, I'm Richard the Warlock!!$
+Inconspicuous Red-brick Wall has been turned into a critter!$
+Inconspicuous Red-brick Wall has been burnt to a crisp!$
+Richard: My job here is done!$
+~$
