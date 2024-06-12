@@ -3,8 +3,6 @@
 class Warlock {
 
 	private :
-		Warlock & operator=(Warlock const & rhs);
-		Warlock(Warlock const & obj);
 		Warlock();
 		std::string _name;
 		std::string _title;

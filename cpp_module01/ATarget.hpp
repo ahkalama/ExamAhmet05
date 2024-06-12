@@ -11,8 +11,6 @@ class ATarget
 	
 	public :
 		ATarget(const std::string &type);
-		ATarget & operator=(ATarget const & rhs);
-		ATarget(ATarget const & obj);
 		virtual ~ATarget();
 		std::string getType() const;
 		virtual ATarget* clone() const = 0;

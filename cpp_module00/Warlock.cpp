@@ -5,21 +5,7 @@ Warlock::Warlock(const std::string &name, const std::string &title) : _name(name
 	std::cout << _name << ": This looks like another boring day." << std::endl;
 }
 
-Warlock::Warlock()
-{
-}
-
-Warlock & Warlock::operator=(Warlock const & rhs)
-{
-	this->_name = rhs._name;
-	this->_title = rhs._title;
-	return *this;
-}
-
-Warlock::Warlock(Warlock const & obj)
-{
-	*this = obj;
-}
+Warlock::Warlock() {}
 
 Warlock::~Warlock()
 {

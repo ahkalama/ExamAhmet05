@@ -1,25 +1,8 @@
 #include "ATarget.hpp"
 
-ATarget::ATarget(const std::string &type) : _type(type)
-{
+ATarget::ATarget(const std::string &type) : _type(type) {}
 
-}
-
-ATarget & ATarget::operator=(ATarget const & rhs)
-{
-	_type = rhs.getType();
-	return *this;
-}
-
-ATarget::ATarget(ATarget const & obj)
-{
-	*this = obj;
-}
-
-ATarget::~ATarget()
-{
-
-}
+ATarget::~ATarget() {}
 
 std::string ATarget::getType() const
 {
