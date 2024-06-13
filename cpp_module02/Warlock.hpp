@@ -2,6 +2,7 @@
 #include <iostream>
 #include "ASpell.hpp"
 #include <map>
+#include "SpellBook.hpp"
 
 class Warlock
 {
@@ -9,7 +10,7 @@ class Warlock
         std::string name;
         std::string title;
         Warlock();
-        std::map<std::string, ASpell *> _spellbook;
+        SpellBook _spellbook;
 
     public:
         Warlock(const std::string &name, const std::string &title);
