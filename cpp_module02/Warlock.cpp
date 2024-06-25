@@ -32,6 +32,7 @@ void	Warlock::introduce() const
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
+// AHKALAMA
 // Bu kısımda aşağıda spellbook sınıfından fonksiyonları çağırmamızı istiyor, fakat siz çağırmak yerine
 // direkt spellbook'un içindeki fonksiyonların içeriğini burda oluşturabilirsiniz. Sınavda geçiyor.
 
