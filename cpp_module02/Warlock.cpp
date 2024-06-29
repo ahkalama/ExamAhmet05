@@ -45,4 +45,4 @@ void Warlock::forgetSpell(std::string SpellName)
 void Warlock::launchSpell(std::string SpellName, ATarget const & target)
 {
 	_spellbook.createSpell(SpellName)->launch(target);
-}
+}ads
