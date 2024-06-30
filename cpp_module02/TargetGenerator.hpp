@@ -2,7 +2,7 @@
 #include <iostream>
 #include <map>
 #include "ATarget.hpp"
-asdasd
+
 class TargetGenerator
 {
     private:
