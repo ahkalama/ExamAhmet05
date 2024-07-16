@@ -1,22 +1,49 @@
 #include "SpellBook.hpp"
 
-SpellBook::SpellBook() {}
-
-SpellBook::~SpellBook() {}
-
-void SpellBook::learnSpell(ASpell*spell)
+SpellBook::SpellBook(SpellBook const & src)
 {
-    if (_spellbook.find(spell->getName()) == _spellbook.end())
-			_spellbook[spell->getName()] = spell->clone();
+	*this = src;
 }
 
-void SpellBook::forgetSpell(std::string const &spell)
+SpellBook & SpellBook::operator=(SpellBook const & src)
 {
-    if (_spellbook.find(spell) != _spellbook.end())
-		_spellbook.erase(_spellbook.find(spell));
+	_SpellBook = src._SpellBook;
+	return (*this);
 }
 
-ASpell* SpellBook::createSpell(std::string const &spell)
+SpellBook::SpellBook()
+{}
+
+SpellBook::~SpellBook()
 {
-    return(_spellbook[spell]);
+	for (std::map<std::string, ASpell*>::iterator it = _SpellBook.begin(); it != _SpellBook.end(); ++it) {
+		delete it->second;
+	}
+	_SpellBook.clear();
+}
+
+void SpellBook::learnSpell(ASpell* spell)
+{
+	if (spell)
+	{
+		_SpellBook[spell->getName()] = spell->clone();
+	}
+}
+
+void SpellBook::forgetSpell(std::string const & SpellName)
+{
+	std::map<std::string, ASpell*>::iterator it = _SpellBook.find(SpellName);
+	if (it != _SpellBook.end())
+	{
+		delete it->second;
+		_SpellBook.erase(it);
+	}
+}
+
+ASpell* SpellBook::createSpell(std::string const &SpellName)
+{
+	ASpell* tmp = NULL;
+	if (_SpellBook.find(SpellName) != _SpellBook.end())
+		tmp = _SpellBook[SpellName];
+	return (tmp);
 }

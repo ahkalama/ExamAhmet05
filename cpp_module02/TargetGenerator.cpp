@@ -1,22 +1,41 @@
 #include "TargetGenerator.hpp"
 
-TargetGenerator::TargetGenerator() {}
-
-TargetGenerator::~TargetGenerator() {}
-
-void TargetGenerator::learnTargetType(ATarget*spell)
+TargetGenerator::TargetGenerator(TargetGenerator const & src)
 {
-    if (_target.find(spell->getType()) == _target.end())
-			_target[spell->getType()] = spell->clone();
+	*this = src;
 }
 
-void TargetGenerator::forgetTargetType(std::string const &spell)
+TargetGenerator & TargetGenerator::operator=(TargetGenerator const & src)
 {
-    if (_target.find(spell) != _target.end())
-		_target.erase(_target.find(spell));
+	_target = src._target;
+	return (*this);
 }
 
-ATarget* TargetGenerator::createTarget(std::string const &spell)
+
+TargetGenerator::TargetGenerator()
+{}
+
+TargetGenerator::~TargetGenerator()
+{}
+
+void TargetGenerator::learnTargetType(ATarget* target)
 {
-    return(_target[spell]);
+	if (target)
+	{
+		_target[target->getType()] = target;
+	}
+}
+
+void TargetGenerator::forgetTargetType(std::string const & target)
+{
+	if (_target.find(target) != _target.end())
+		_target.erase(_target.find(target));
+}
+
+ATarget* TargetGenerator::createTarget(std::string const &target)
+{
+	ATarget* tmp = NULL;
+	if (_target.find(target) != _target.end())
+		tmp = _target[target];
+	return (tmp);
 }

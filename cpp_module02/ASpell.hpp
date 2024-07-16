@@ -11,7 +11,9 @@ class ASpell
 		std::string _effects;
 	
 	public :
-		ASpell(const std::string &name, const std::string &effects);
+		ASpell(std::string name, std::string effects);
+		ASpell & operator=(ASpell const & rhs);
+		ASpell(ASpell const & obj);
 		virtual ~ASpell();
 		std::string getName() const;
 		std::string getEffects() const;
